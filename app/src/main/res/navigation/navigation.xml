@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/titleFragment">
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.example.assignment4.screens.title.TitleFragment"
+        android:label="TitleFragment" >
+        <action
+            android:id="@+id/action_titleFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.assignment4.screens.tasks.TaskFragment"
+        android:label="TaskFragment" >
+        <action
+            android:id="@+id/action_task_to_completed"
+            app:destination="@id/completedFragment"
+            app:popUpTo="@id/titleFragment"
+            app:popUpToInclusive="false" >
+            <argument
+                android:name="taskCount"
+                android:defaultValue="0" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/completedFragment"
+        android:name="com.example.assignment4.screens.completed.CompletedFragment"
+        android:label="CompletedFragment" >
+        <action
+            android:id="@+id/action_restart"
+            app:destination="@id/taskFragment"
+            app:popUpTo="@id/titleFragment" />
+        <argument
+            android:name="taskCount"
+            app:argType="integer" />
+    </fragment>
+</navigation>
